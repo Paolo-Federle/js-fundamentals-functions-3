@@ -7,12 +7,12 @@
 
 function timerStatus(timeLeftForBaking) {
   if (timeLeftForBaking === 0) {
-    return console.log("Phil's cake is ready!")
+    return "Phil's cake is ready!"
   }
   if (timeLeftForBaking > 0) {
-    return console.log('The cake is still baking!')
+    return 'The cake is still baking!'
   }
-  return console.log("You didn't set a timer!")
+  return "You didn't set a timer!"
 }
 
 // 2. To help Phil prepare ahead of time, create a function named estimatePrepTime
