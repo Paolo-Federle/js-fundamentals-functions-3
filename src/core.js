@@ -5,7 +5,15 @@
 // "The cake is still baking!" if there are any remaining minutes left,
 // or "You didn't set a timer!" if no value is provided to the parameter
 
-
+function timerStatus(timeLeftForBaking) {
+  if (timeLeftForBaking === 0) {
+    return console.log("Phil's cake is ready!")
+  }
+  if (timeLeftForBaking > 0) {
+    return console.log('The cake is still baking!')
+  }
+  return console.log("You didn't set a timer!")
+}
 
 // 2. To help Phil prepare ahead of time, create a function named estimatePrepTime
 // that accepts two parameters:
@@ -16,7 +24,9 @@
 // If no prep time per ingredient is provided, the function should assume each ingredient
 // takes 2 minutes to prepare
 
-
+function estimatePrepTime(arrayOfIngredients, prepTimePerIngredients = 2) {
+  return arrayOfIngredients.length * prepTimePerIngredients
+}
 
 // 3. Phil needs to know the quantity of milk and eggs to use! Create a function
 // named calculateQuantities which accepts two parameters:
@@ -34,7 +44,28 @@
 // calculateQuantities(["milk", "eggs"], 3)
 // returns: { sugar: 0, eggs: 6 }
 
+// Create the function and parameters
+function calculateQuantities(ingredients, numberOfLayers) {
+  // Create an object with sugar and eggs keys, initialised values to 0
+  const recipe = {
+    sugar: 0,
+    eggs: 0
+  }
 
+  // Check if the array contains sugar
+  if (ingredients.includes('sugar')) {
+    // If it does, add 100 * number of layers to the sugar key
+    recipe.sugar = 100 * numberOfLayers
+  }
+
+  // Do the same for eggs
+  if (ingredients.includes('eggs')) {
+    recipe.eggs = 2 * numberOfLayers
+  }
+
+  // Return the object
+  return recipe
+}
 
 // 4. Phil's cake is pretty small and only provides 1 portion. He wants to make a bigger one!
 // Create a function named improveRecipe that accepts two parameters:
@@ -49,13 +80,22 @@
 // improveRecipe({ eggs: 2, milk: 100, sugar: 200 }, 3)
 // returns: { eggs: 6, milk: 300, sugar: 600 }
 
-
-
+function improveRecipe(recipe, numberOfPortion) {
+  const keys = Object.keys(recipe)
+  keys.forEach(function (theyKey) {
+    // calculation on each value  is the  object keys value * portion
+    // recipe.milk = recipe.milk * numberOfPortion
+    recipe[theyKey] = recipe[theyKey] * numberOfPortion
+    // [theyKey] return the value, without [] it would give just the key
+    // è scritto theKey perché non sappiamo che ingrediente ci sarà
+  })
+  return recipe
+}
 
 // Don't change the code below this line
 module.exports = {
-    timerStatus,
-    estimatePrepTime,
-    calculateQuantities,
-    improveRecipe
+  timerStatus,
+  estimatePrepTime,
+  calculateQuantities,
+  improveRecipe
 }
